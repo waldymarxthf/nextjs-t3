@@ -35,6 +35,7 @@ import {
 	IconLogout,
 } from "@tabler/icons-react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 
 const useStyles = createStyles((theme) => ({
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -198,9 +199,9 @@ export function HeaderMegaMenu() {
 						spacing={0}
 						className={classes.hiddenMobile}
 					>
-						<a href="/play" className={classes.link}>
+						<Link href="/play" className={classes.link}>
 							Play
-						</a>
+						</Link>
 						<HoverCard
 							width={600}
 							position="bottom"

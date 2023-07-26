@@ -4,11 +4,8 @@ import {
   getServerSession,
   type NextAuthOptions,
   type DefaultSession,
-  type User
 } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import Credentials from "next-auth/providers/credentials";
-import { users } from "~/data/users";
 import { env } from "~/env.mjs";
 import { prisma } from "~/server/db";
 
