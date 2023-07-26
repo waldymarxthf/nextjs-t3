@@ -338,9 +338,9 @@ export function HeaderMegaMenu() {
 						color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
 					/>
 
-					<a href="/play" className={classes.link}>
+					<Link href="/play" className={classes.link}>
 						Play
-					</a>
+					</Link>
 					<UnstyledButton className={classes.link} onClick={toggleLinks}>
 						<Center inline>
 							<Box component="span" mr={5}>
