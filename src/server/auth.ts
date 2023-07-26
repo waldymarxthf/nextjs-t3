@@ -4,10 +4,13 @@ import {
   getServerSession,
   type NextAuthOptions,
   type DefaultSession,
+  type User
 } from "next-auth";
-import DiscordProvider from "next-auth/providers/discord";
-import { env } from "@/env.mjs";
-import { prisma } from "@/server/db";
+import GoogleProvider from "next-auth/providers/google";
+import Credentials from "next-auth/providers/credentials";
+import { users } from "~/data/users";
+import { env } from "~/env.mjs";
+import { prisma } from "~/server/db";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -47,10 +50,29 @@ export const authOptions: NextAuthOptions = {
   },
   adapter: PrismaAdapter(prisma),
   providers: [
-    DiscordProvider({
-      clientId: env.DISCORD_CLIENT_ID,
-      clientSecret: env.DISCORD_CLIENT_SECRET,
+    GoogleProvider({
+      clientId: env.GOOGLE_CLIENT_ID,
+      clientSecret: env.GOOGLE_CLIENT_SECRET
     }),
+    // Credentials({
+    //   credentials: {
+    //     email: {label: 'email', type: 'email', required: true},
+    //     password: {label: 'password', type: 'password', required: true}
+    //   },
+    //   async authorize(credentials) {
+    //     if (!credentials?.email || !credentials.password) return null
+
+    //     const currentUser = users.find(user => user.email === credentials.email)
+    //     if (currentUser && currentUser.password === credentials.password) {
+    //       const {password, ...userWithoutPass} = currentUser
+
+    //       return userWithoutPass as User
+    //     }
+    //     console.log(currentUser)
+
+    //     return null
+    //   }
+    // })
     /**
      * ...add more providers here.
      *
